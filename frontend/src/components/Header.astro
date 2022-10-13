@@ -1,0 +1,61 @@
+---
+const navigation = [
+  { url: "/", title: "Home" },
+  { url: "/products", title: "Products" },
+];
+---
+
+<>
+  <header class="header navbar-fixed-top top-nav-collapse">
+    <!-- Navbar -->
+    <nav class="navbar" role="navigation">
+      <div class="container">
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="">
+          <div class="menu-container">
+            <ul class="nav navbar-nav navbar-nav-right customNavbar">
+              {
+                navigation.map((item) => (
+                  <li class="js_nav-item nav-item">
+                    <a
+                      class="nav-item-child nav-item-hover customNav"
+                      href={item.url}
+                    >
+                      {" "}
+                      {item.title}
+                    </a>
+                  </li>
+                ))
+              }
+              <li class="js_nav-item nav-item">
+                {
+                  Astro.cookies.has("jwt") ? (
+                    <a class="nav-item-child nav-item-hover" href={"/logout"}>
+                      {"Logout"}
+                    </a>
+                  ) : (
+                    <a class="nav-item-child nav-item-hover" href={"/login"}>
+                      {"Login"}
+                    </a>
+                  )
+                }
+              </li>
+            </ul>
+          </div>
+        </div>
+        <!-- End Navbar Collapse -->
+      </div>
+    </nav>
+    <!-- Navbar -->
+  </header>
+</>
+
+<style is:global>
+  .customNavbar {
+    display: flex;
+    flex-direction: row !important;
+    gap: 10px;
+  }
+  .customNav {
+  }
+</style>

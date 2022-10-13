@@ -1,0 +1,38 @@
+---
+import Layout from "../layouts/Layout.astro";
+if (Astro.cookies.has("jwt")) {
+  return Astro.redirect("/products");
+}
+---
+
+<Layout title="Login page">
+  <!-- <Login isRegister={false} client:load /> -->
+  <div class="container">
+    <h1>Login</h1>
+    <form action="" id="loginForm">
+      <div class="form-floating mb-7">
+        <input
+          type="email"
+          class="form-control"
+          id="floatingInput"
+          placeholder="name@example.com"
+        />
+        <label for="floatingInput">Email address</label>
+      </div>
+      <div class="form-floating mb-7">
+        <input
+          type="password"
+          class="form-control"
+          id="floatingPassword"
+          placeholder="Password"
+          minlength="8"
+        />
+        <label for="floatingPassword">Password</label>
+      </div>
+      <div class="mb-2">
+        <a href="/registration">create an account</a>
+      </div>
+      <button class="btn btn-success" type="submit" id='btnLogin'>Login</button>
+    </form>
+  </div>
+</Layout>

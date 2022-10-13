@@ -1,0 +1,7 @@
+---
+if (Astro.cookies.has("jwt")) {
+  // Astro.cookies.delete("accessToken");
+}
+return Astro.redirect("/login");
+---
+<div>Exit...</div>

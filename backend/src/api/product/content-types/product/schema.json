@@ -13,7 +13,8 @@
   "pluginOptions": {},
   "attributes": {
     "Title": {
-      "type": "string"
+      "type": "string",
+      "pluginOptions": {}
     },
     "Image": {
       "type": "media",
@@ -24,10 +25,12 @@
         "files",
         "videos",
         "audios"
-      ]
+      ],
+      "pluginOptions": {}
     },
     "Price": {
-      "type": "decimal"
+      "type": "decimal",
+      "pluginOptions": {}
     }
   }
 }

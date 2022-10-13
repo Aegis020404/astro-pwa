@@ -1,28 +1,39 @@
 ---
+import Header from "../components/Header.astro";
+import { Spa } from "astro-spa";
 
+interface props {
+  title: string;
+}
+
+const { title }: Record<string, props> = Astro.props;
 ---
 
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Hello Astro</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
 
-        <!-- metronic scc -->
-        <link rel="stylesheet" href="/assets/plugins/global/plugins.bundle.css">
-        <link rel="stylesheet" href="/assets/css/style.bundle.css">
-	</head>
-	<body>
-		<slot />
-        
-        <!-- metronic js -->
-        <script src="/assets/plugins/global/plugins.bundle.js" is:inline></script>
-        <script src="/assets/js/scripts.bundle.js" is:inline></script>
-	</body>
+    <!-- metronic scc -->
+    <link rel="stylesheet" href="/assets/plugins/global/plugins.bundle.css" />
+    <link rel="stylesheet" href="/assets/css/style.bundle.css" />
+    <!-- metronic scc -->
+  </head>
+  <body id="body" data-spy="scroll" data-target=".header">
+    <!-- metronic js -->
+    <script src="/assets/plugins/global/plugins.bundle.js" is:inline></script>
+    <script src="/assets/js/scripts.bundle.js" is:inline></script>
+    <!-- metronic js -->
+
+    <Header />
+
+    <Spa />
+    <slot />
+    <script src="/ui.js" is:inline></script>
+    <style is:global></style>
+  </body>
 </html>
-<style is:global>
-	
-</style>
