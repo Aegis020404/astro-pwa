@@ -1,0 +1,33 @@
+---
+interface props {
+  title: string;
+}
+
+const { Title, Image, Price }: Record<string, props> = Astro.props;
+---
+
+return (
+<div>
+  <div>{count}</div>
+  <span>{item.id}</span>
+  <span>{item.product.id}</span>
+  <span>{item.product.title}</span>
+  <span>{item.product.price}</span>
+  <input
+    type="number"
+    value={count}
+    readonly={readonly}
+    onChange={handleChangeCount}
+  />
+  <span>{item.count * item.product.price}</span>
+  {
+    item.product.image && (
+      <img
+        src={"http://localhost:1337" + item.product.image.formats.thumbnail.url}
+        width="50px"
+      />
+    )
+  }
+  <a href="">Remove</a>
+</div>
+) }

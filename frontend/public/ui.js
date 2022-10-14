@@ -1,25 +1,38 @@
-
+async function fetchPost(href, body) {
+    return fetch(`http://localhost:1337/api/${href}`, {
+        method: 'POST',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ ...body })
+    })
+}
 
 
 // ---------------------- LOGIN ----------------------
 if (document.querySelector('#loginForm'))
     document.querySelector('#loginForm').onsubmit = function (e) {
-        console.log(e.target.elements[0].value)
-        console.log(e.target.elements[1].value)
-        fetch('http://localhost:1337/api/auth/local/', {
-            method: 'POST',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                identifier: e.target.elements[0].value,
-                password: e.target.elements[1].value
-            })
-        }).then((e) => {
+        // fetch('http://localhost:1337/api/auth/local/', {
+        //     method: 'POST',
+        //     headers: {
+        //         'Accept': 'application/json',
+        //         'Content-Type': 'application/json'
+        //     },
+        //     body: JSON.stringify({
+        //         identifier: e.target.elements[0].value,
+        //         password: e.target.elements[1].value
+        //     })
+        // })
+        let body = {
+            identifier: e.target.elements[0].value,
+            password: e.target.elements[1].value
+        }
+
+        fetchPost('auth/local/', body).then((e) => {
+            console.log(e)
             const result = e.json()
             if (e.status !== 200) {
-
             } else {
                 btnLogin.innerHTML = 'Successed'
                 setTimeout(() => {
@@ -28,7 +41,6 @@ if (document.querySelector('#loginForm'))
             }
             return result
         }).then((result) => {
-
             if (result.jwt) document.cookie = "jwt=" + result.jwt;
         })
 
@@ -63,7 +75,11 @@ if (document.querySelector('#RegisterForm'))
                     buttonRegister.innerHTML = 'Register'
                 }, 3000)
             } else {
-                if (e.jwt) document.cookie = "jwt=" + e.jwt;
+                let date = new Date(Date.now() + 86400e3)
+                if (e.jwt) {
+                    document.cookie = "jwt=" + e.jwt;
+                    
+                }
                 buttonRegister.innerHTML = 'authorized'
 
             }
